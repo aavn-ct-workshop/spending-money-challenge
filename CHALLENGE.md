@@ -16,10 +16,12 @@ Here is app we're going to build with 2 pages and following features:
 ![product detail](docs/spending_money_2.png)
 
 ## Setup workspace
-#### Checkout code at repository: 
+### Checkout code at repository: 
 https://github.com/aavn-ct-workshop/spending-money-challenge
 
-#### Project structure
+### Account for testing: *test1/test1, test2/test2*
+
+### Project structure
 The Workshop Team was initialized the project for you, you can follow Vue official documentation & project READ ME to start develop.
 ```
 /
@@ -34,12 +36,12 @@ The Workshop Team was initialized the project for you, you can follow Vue offici
 
 ```
 
-## Hint 1: Component design
+### Hint 1: Component design
 From workshop team, we split the page into smaller reusable Vue components, such as: ProductItem component, ShoppingCart component,..  
 You're free to design your own component structure to archieve the requirements above. The team with well project structure, cover more requirements have a change to get a little gift from organizer. 
 ![spending money component](docs/spending_money_component.jpg)
 
-## Hint 2: Using backend data
+### Hint 2: Using backend data
 The pre-built application is using fake data, implement to make call to backend service is a plus. As the workshop team, we provide 2 to get list of product and user.  
 https://spending-money-backend.herokuapp.com/api/products  
 https://spending-money-backend.herokuapp.com/api/users  
