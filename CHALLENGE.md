@@ -6,6 +6,7 @@ Thanks for joining the first session of the Vue.js workshop, we were all togethe
 Here is the app we're going to build with 2 pages and the following features:
 * **First page** (Product list):
   * *Display all the products*, each product item has *add to cart button*. 
+  * *Add to Cart button not able to click when the money don't have enough*.
   * When an item is added to the cart, *display it on the shopping cart*.
   * Items in the cart can be removed.
   * *Cart total* must be updated after cart items change (item add / item remove)
