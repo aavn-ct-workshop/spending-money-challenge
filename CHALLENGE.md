@@ -17,7 +17,8 @@ Here is the app we're going to build with 2 pages and the following features:
 
 ## Setup workspace
 ### Checkout code at repository: 
-https://github.com/aavn-ct-workshop/spending-money-challenge
+https://github.com/aavn-ct-workshop/spending-money-challenge  
+Checkout the corresponding branch belong to your team. (team1, team2, team3, team4)
 
 ### Account for testing: *test1/test1, test2/test2*
 
