@@ -68,7 +68,7 @@ export default {
       return this.$store.getters['products/getAllProducts']
     },
     currentAmount() {
-      return 10000000000 - this.boughtProducts?.reduce((currentValue, product) => {
+      return 1000 - this.boughtProducts?.reduce((currentValue, product) => {
         const number = product.number && product.number > 0 ? product.number : 1;
         return currentValue + (number * product.price);
       }, 0);
