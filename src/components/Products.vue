@@ -12,9 +12,18 @@
       </div>
     </div>
     <div class="p-grid pricing-table-price">
-      <div v-if="loading">
+      <div v-if="loading && displayProductDetail">
         loading ...
       </div>
+      <div v-if="!loading && !displayProductDetail">
+        <product-item v-for="product in getAllProducts" v-bind:product="product" v-bind:key="product.key" v-on:set-current-product="setCurrentProduct" v-on:add-to-cart="addToCart" v-bind:currentAmount="currentAmount"></product-item>
+      </div>
+    </div>
+    <div>
+        <shopping-cart></shopping-cart>
+    </div>
+    <div>
+      <product-detail v-if="displayProductDetail" v-bind:product="currentProduct" v-bind:currentAmount="currentAmount" v-on:back-to-products="backToProducts" v-on:add-to-cart="addToCart"></product-detail>
     </div>
   </div>
 </template>
@@ -23,8 +32,11 @@
 import Banner from "./Banner";
 import Header from "./Header";
 import NavBar from "./NavBar";
+import ProductItem from "./ProductItem";
+import ShoppingCart from "./ShoppingCart";
 
 import {getProducts} from '../assets/js/services/fake-backend'
+import ProductDetail from './ProductDetail.vue';
 
 const formatter = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
 
@@ -34,23 +46,38 @@ export default {
     NavBar,
     Banner,
     Header,
+    ProductItem,
+    ShoppingCart,
+    ProductDetail
   },
   data() {
     return {
       boughtProducts: this.$store.getters['cart/getAllProducts'],
-      loading: false
+      loading: false,
+      displayProductDetail: false,
     };
   },
   created () {
     // fetch the data when the view is created and the data is
     // already being observed
     this.fetchData()
+    console.log(this.products)
   },
   watch: {
     // call again the method if the route changes
     '$route': 'fetchData'
   },
   methods: {
+    addToCart(product) {
+      this.$store.dispatch('cart/addProduct', product)
+    },
+    setCurrentProduct(product) {
+      this.$store.dispatch('products/currentProduct', product)
+      this.displayProductDetail = true
+    },
+    backToProducts() {
+      this.displayProductDetail = false
+    },
     formatCurrency(currency) {
      return formatter?.format(currency);
    },
@@ -62,17 +89,25 @@ export default {
         this.loading = false;
       });
    }
-  },
+   },
   computed: {
     getAllProducts() {
       return this.$store.getters['products/getAllProducts']
+    },
+    currentProduct() {
+            console.log(this.$store.getters['products/getCurrentProduct'])
+            return this.$store.getters['products/getCurrentProduct']
     },
     currentAmount() {
       return 1000 - this.boughtProducts?.reduce((currentValue, product) => {
         const number = product.number && product.number > 0 ? product.number : 1;
         return currentValue + (number * product.price);
       }, 0);
-    }
+    },
+    productsInCart() {
+            console.log(this.$store.getters['cart/getAllProducts']);
+            return this.$store.getters['cart/getAllProducts']
+        }
   }
 };
 </script>

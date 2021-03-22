@@ -323,6 +323,7 @@ button.pure-button-primary {
 
 .receipt-table {
     border: none;
+    width: 100%;
 }
 
 .receipt-table tbody tr {
@@ -454,26 +455,36 @@ button.pure-button-primary {
  * Styles for the price and the corresponding <span>per month</span>
  */
 .pricing-table-price {
-    font-size: 6em;
+    font-size: 1.5em;
     margin: 0.2em 0 0;
-    font-weight: 100;
+    font-weight: 20;
+    display: inline;
+    float: left;
+    width: 100%;
+}
+
+.pricing-table-price .item{
+    display: block;
+    width: 45%;
+    padding: 1em;
+    margin: 0.5em;
+    background-color: white;
 }
 
 .pricing-table-price span.price-name {
     display: block;
-    font-size: 0.2em;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.5em;
+    font-weight: 20;
     color: black;
+    font-weight: bold;
 }
 
 .pricing-table-price span.price-value {
     display: block;
-    font-size: 0.2em;
+    font-size: 0.5em;
     padding: 0.5em 0em 0.5em 0em;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.5);
-    color: black;
+    font-weight: 20;
+    color: green;
 }
 
 .pricing-table-price img.price-image {
@@ -518,13 +529,20 @@ button.pure-button-primary {
  * This inherits from Pure Button.
  */
 .button-choose {
-    border: 1px solid #ccc;
-    background: #fff;
-    color: #333;
-    border-radius: 2em;
+    border: none;
+    background: #0d89ec;
+    color: white;
+    border-radius: none;
     font-weight: bold;
     position: relative;
-    bottom: -1.5em;
+    padding: 0.5em 1.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+.disabled {
+    background: gray;
+    cursor: initial;
 }
 
 .information-head {
@@ -587,5 +605,29 @@ button.pure-button-primary {
 }
 
 .product-remove-cart:hover {
+    cursor: pointer;
+}
+
+.shopping-cart {
+    position: fixed;
+    right: 10em;
+    top: 15em;
+    height: min-content;
+    padding: 20px;
+    width: 25em;
+}
+
+.shopping-cart .container {
+    border: 2px solid green;
+    padding: 0.5em 1em;
+    border-radius: 0.8em;
+}
+
+.delete-button {
+    padding: 0px;
+    background-color: red;
+}
+
+.delete-button:hover {
     cursor: pointer;
 }
