@@ -1,16 +1,24 @@
 <template>
   <div class="p-d-flex">
-    <div class="p-col-8 p-d-flex p-flex-column p-ai-end">
-      <router-view></router-view>
-    </div>
+    <table width="100%">
+      <tr>
+        <td width="80%">
+          <router-view></router-view>
+          </td>
+          <td>
+<Cart/>
+          </td>
+        </tr>
+    </table>
   </div>
 </template>
 
 <script>
-
+import Cart from "./Cart";
 export default {
   name: "Product",
   components: {
+    Cart
   },
   data() {
     return { };

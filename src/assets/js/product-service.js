@@ -4,8 +4,16 @@ const productService = {
     getProducts
 };
 
-function getProducts() {
-    return DEFAULT_PRODUCTS;
+function getProducts(callback) {
+    const requestOpts = {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      };
+    return fetch(`https://spending-money-backend.herokuapp.com/api/products`, requestOpts)
+    .then((data) => {
+        console.log(data);
+        callback(JSON.parse(data));
+    });
 }
 
 function getImgUrl(product) {

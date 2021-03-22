@@ -11,7 +11,9 @@ export default {
     getters: {
         getAllProducts: state => state.products,
         getCurrentProduct: state => state.currentProduct,
-        getProductById: (state) => (id) => { return state.products.find(product => product.id == id); },
+        getProductById: (state) => (id) => { 
+            return state.products.find(product => product.id == id); 
+        },
         getImgUrl: (state) => (id) => { return require('../../assets/images/' + state.products.find(product => product.id == id).img); },
     },
 

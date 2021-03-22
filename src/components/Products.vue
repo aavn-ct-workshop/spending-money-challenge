@@ -11,11 +11,30 @@
         </div>
       </div>
     </div>
+
+
+
+
     <div class="p-grid pricing-table-price">
       <div v-if="loading">
         loading ...
       </div>
+      <table>
+        <tr>
+          <td v-for="item in getAllProducts" :key="item.id">
+            <router-link class="product-item" :to="{path: '/product/' + item.id}">
+              <img :src="loadImage(item.id)" />
+              </router-link>
+              <p>{{item.name}}</p>
+              <p>{{item.price}}</p>
+              <button type="button" v-on:click="addToCart(item)" :disabled="(currentAmount - item.price) <= 0">Add to cart</button>
+            
+          </td>
+        </tr>
+      </table>
     </div>
+
+    
   </div>
 </template>
 
@@ -54,18 +73,24 @@ export default {
     formatCurrency(currency) {
      return formatter?.format(currency);
    },
+   addToCart(product) {
+      this.$store.dispatch("cart/addProduct", product);
+    },
    fetchData() {
-      this.products = null;
+      this.products = [];
       this.loading = true;
       getProducts((products) => {
         this.$store.dispatch('products/loadAllProducts', products)
         this.loading = false;
       });
-   }
+   },
+   loadImage(id) {
+      return this.$store.getters['products/getImgUrl'](id);
+    }
   },
   computed: {
     getAllProducts() {
-      return this.$store.getters['products/getAllProducts']
+      return this.$store.getters['products/getAllProducts'];
     },
     currentAmount() {
       return 1000 - this.boughtProducts?.reduce((currentValue, product) => {
