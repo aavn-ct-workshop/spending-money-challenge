@@ -61,7 +61,6 @@ export default {
     // fetch the data when the view is created and the data is
     // already being observed
     this.fetchData()
-    console.log(this.products)
   },
   watch: {
     // call again the method if the route changes
@@ -70,6 +69,7 @@ export default {
   methods: {
     addToCart(product) {
       this.$store.dispatch('cart/addProduct', product)
+      this.boughtProducts = this.$store.getters['cart/getAllProducts']
     },
     setCurrentProduct(product) {
       this.$store.dispatch('products/currentProduct', product)
@@ -95,7 +95,6 @@ export default {
       return this.$store.getters['products/getAllProducts']
     },
     currentProduct() {
-            console.log(this.$store.getters['products/getCurrentProduct'])
             return this.$store.getters['products/getCurrentProduct']
     },
     currentAmount() {
@@ -105,7 +104,6 @@ export default {
       }, 0);
     },
     productsInCart() {
-            console.log(this.$store.getters['cart/getAllProducts']);
             return this.$store.getters['cart/getAllProducts']
         }
   }

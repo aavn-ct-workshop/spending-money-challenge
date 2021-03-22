@@ -1,7 +1,7 @@
 <template>
     <div class="shopping-cart">
         <span style="font-weight:bold;">Shoping Cart</span>
-        <div class="container">
+        <div class="container" v-if="numberOfProductsInCart > 0">
             <table class="receipt-table">
                 <tr v-for="product in productsInCart" v-bind:key="product.key">
                     <td style="text-align:left">{{product.name}}</td>
@@ -14,6 +14,9 @@
             <div>Total: {{formatCurrency(totalAmount)}}</div>
             <div><button class="button-choose" v-on:click="checkOut">Check out</button></div>
         </div>
+        <div class="container" v-else>
+            <span>Please buy somethings</span>
+            </div>
     </div>
 </template>
 
@@ -37,6 +40,9 @@ export default {
     computed: {
         productsInCart() {
             return this.$store.getters['cart/getAllProducts']
+        },
+        numberOfProductsInCart() {
+            return this.$store.getters['cart/getAllProducts']?.length
         },
         totalAmount() {
             return this.$store.getters['cart/getAllProducts'].reduce((currentValue, product) => {
