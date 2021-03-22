@@ -1,27 +1,29 @@
 <template>
   <div class="p-col-10">
-    <NavBar />
-    <Header />
-    <img id="billAvatar" src="../assets/images/bill.jpg" class="p-m-2" />
-    <Banner msg="Spend Bill Gates' Money" />
-    <div class="l-content">
-      <div class="pricing-tables pure-g" id="pricing-tables">
-        <div class="pricing-amount pure-u-1 pure-u-md-3-3">
-          <div class="current-amount">{{formatCurrency(currentAmount)}}</div>
+    <div v-if="!displayProductDetail">
+      <NavBar />
+      <Header />
+      <img id="billAvatar" src="../assets/images/bill.jpg" class="p-m-2" />
+      <Banner msg="Spend Bill Gates' Money" />
+      <div class="l-content">
+        <div class="pricing-tables pure-g" id="pricing-tables">
+          <div class="pricing-amount pure-u-1 pure-u-md-3-3">
+            <div class="current-amount">{{formatCurrency(currentAmount)}}</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="p-grid pricing-table-price">
-      <div v-if="loading && displayProductDetail">
-        loading ...
-      </div>
-      <div v-if="!loading && !displayProductDetail">
-        <product-item v-for="product in getAllProducts" v-bind:product="product" v-bind:key="product.key" v-on:set-current-product="setCurrentProduct" v-on:add-to-cart="addToCart" v-bind:currentAmount="currentAmount"></product-item>
+      <div class="p-grid pricing-table-price">
+        <div v-if="loading && displayProductDetail">
+          loading ...
+        </div>
+        <div v-if="!loading && !displayProductDetail">
+          <product-item v-for="product in getAllProducts" v-bind:product="product" v-bind:key="product.key" v-on:set-current-product="setCurrentProduct" v-on:add-to-cart="addToCart" v-bind:currentAmount="currentAmount"></product-item>
+        </div>
       </div>
     </div>
     <div>
         <shopping-cart></shopping-cart>
-    </div>
+      </div>
     <div>
       <product-detail v-if="displayProductDetail" v-bind:product="currentProduct" v-bind:currentAmount="currentAmount" v-on:back-to-products="backToProducts" v-on:add-to-cart="addToCart"></product-detail>
     </div>
