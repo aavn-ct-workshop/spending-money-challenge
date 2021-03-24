@@ -33,7 +33,8 @@ export default {
             _remove(state.products, i => i.name === name);
         },
         STORE_TO_STORAGE: (state) => {
-            localStorage.selectedProducts = JSON.stringify(state.products);
+            //localStorage.selectedProducts = JSON.stringify(state.products);
+            console.log(state);
         }
     },
 

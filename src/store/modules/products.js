@@ -26,6 +26,7 @@ export default {
             state.showPopupCart = !state.showPopupCart;
         },
         SAVE_PRODUCTS: (state, products) => {
+            console.log("savev" + products);
             state.products = products;
         }
     },

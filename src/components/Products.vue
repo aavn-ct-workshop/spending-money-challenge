@@ -12,17 +12,34 @@
       </div>
     </div>
     <div class="p-grid pricing-table-price">
-      <div v-if="loading">
+      <div v-if="loading" style="text-align: center;">
         loading ...
+      </div>
+      <div  v-if="!loading">
+        <ul id="example-1" style="list-style-type: none;">
+          <li v-for="item in getAllProducts" :key="item.id">
+            <ProductItem :product="item"></ProductItem>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
+
+<div class="p-col-2">
+<ul id="example-1" style="list-style-type: none;">
+          <li v-for="item in getAllProductsInCart" :key="item.id">
+            <CartItem :product="item"></CartItem>
+          </li>
+        </ul>
+</div>
 </template>
 
 <script>
 import Banner from "./Banner";
 import Header from "./Header";
 import NavBar from "./NavBar";
+import ProductItem from "./ProductItem";
+import CartItem from "./CartItem";
 
 import {getProducts} from '../assets/js/services/fake-backend'
 
@@ -34,6 +51,8 @@ export default {
     NavBar,
     Banner,
     Header,
+    ProductItem,
+    CartItem
   },
   data() {
     return {
@@ -64,6 +83,10 @@ export default {
    }
   },
   computed: {
+    getAllProductsInCart() {
+      return this.$store.getters['cart/getAllProducts']
+    }, 
+
     getAllProducts() {
       return this.$store.getters['products/getAllProducts']
     },
