@@ -1,6 +1,7 @@
 import Login from './components/Login'
 import Products from './components/Products'
 import ProductLayout from './components/ProductLayout'
+import SingleProduct from './components/SingleProduct'
 
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -25,6 +26,11 @@ const routes = [
         component: Products,
       }
     ]
+  },
+  {
+    path: '/single-product/:id',
+    name: 'single-product', 
+    component: SingleProduct,
   }
 ]
 
